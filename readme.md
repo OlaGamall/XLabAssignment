@@ -5,6 +5,5 @@ To run the app you need to do the following:
 
     -install node modeuls at angular.
     -at api write the following commands:
-    
         1. add-migration newMigration
         2. update-database
