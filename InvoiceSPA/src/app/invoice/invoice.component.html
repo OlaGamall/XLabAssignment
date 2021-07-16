@@ -1,0 +1,101 @@
+<div class="w-100 d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #e1ae00;">
+    <div class="w-75 pt-4 px-5  main">
+        
+        <div class="row mx-5"> <!-- where to search -->
+            <div class="col-2">رقم الحركة</div>
+            <div class="col">
+                <input type="number" [(ngModel)]="idToSearch">
+            </div>
+            <div class="col text-start">
+                <button class="btn px-5" (click)="getInvoice()">بحث</button>
+            </div>
+        </div>
+        <hr style="color: white;">  
+
+        <div class="row mx-5 my-2"> 
+            <div class="col-2">رقم الحركة</div>
+            <div class="col">
+                <input type="number" [(ngModel)]="invoice.id">
+            </div>
+            <div class="col text-start">
+                <button class="btn px-5 mx-2" (click)="updateInvoice()">Update</button>
+                <button class="btn px-5" (click)="clear()">Clear</button>
+            </div>
+        </div>
+
+        <div class="row mx-5 my-2"> 
+            <div class="col-2">اسم العميل</div>
+            <div class="col">
+                <input type="text" [(ngModel)]="invoice.clienName">
+            </div>
+            <div class="col text-start">
+                <button class="btn px-5 mx-2" (click)="deleteInvoice()">Delete</button>
+                <button class="btn px-5" (click)="addInvoice()">Insert</button>
+            </div>
+        </div>
+
+        <div class="row mx-5 my-2"> 
+            <div class="col-2">التاريخ</div>
+            <div class="col">
+                <input type="date" style="width: 205px;" [ngModel] ="invoice.date | date:'yyyy-MM-dd'" (ngModelChange)="invoice.date = $event">
+            </div>       
+        </div>
+        <!-- table -->
+        <div class="rapper mt-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>الصنف</th>
+                        <th>السعر</th>
+                        <th>الكمية</th>
+                        <th>الإجمالي</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of invoice.invoiceDetails; let index = index"> 
+                        <td *ngIf="idToEdit != i.id">{{i.itemName}}</td>  
+                        <td *ngIf="idToEdit != i.id">{{i.price}}</td>
+                        <td *ngIf="idToEdit != i.id">{{i.quantity}}</td>
+                        <td *ngIf="idToEdit != i.id">{{i.price * i.quantity}}</td>
+
+                        <td *ngIf="idToEdit == i.id"><input type="text" [(ngModel)]="itemToEdit.itemName"></td>
+                        <td *ngIf="idToEdit == i.id"><input type="number" [(ngModel)]="itemToEdit.price"></td>
+                        <td *ngIf="idToEdit == i.id"><input type="number" [(ngModel)]="itemToEdit.quantity"></td>
+                        <td *ngIf="idToEdit == i.id"><input disabled type="number" [(ngModel)]="itemToEdit.price*itemToEdit.quantity"></td>
+                        <td>
+                            <button (click)="editRow(i.id)" *ngIf="idToEdit != i.id" class="btn mx-2" style="background-color: #e1ae00;">تعديل</button>
+                            <button (click)="deleteRow(index)" *ngIf="idToEdit != i.id" class="btn bg-danger mx-2 text-light">حذف</button>
+                            <button (click)="saveEditedRow(i.id)" *ngIf="idToEdit == i.id" class="btn mx-2" style="background-color: #e1ae00;">حفظ</button>
+                            <button (click)="cancel()" *ngIf="idToEdit == i.id" class="btn bg-white mx-2" style="background-color: #e1ae00;">إلغاء</button>
+
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row mx-5 my-4">
+            <div class="col"><input type="text" placeholder="اسم العنصر" [(ngModel)]="newItem.itemName"></div>
+            <div class="col"><input type="number" placeholder="السعر" [(ngModel)]="newItem.price"></div>
+            <div class="col"><input type="number" placeholder="الكمية" [(ngModel)]="newItem.quantity"></div>
+            <div class="col">
+                <button (click)="addNewItem()" class="btn w-100 mx-auto" style="background-color: #e1ae00;">أضف</button>
+            </div>
+        </div>
+
+        <hr style="color: white;" class="mt-1">
+
+        <div class="row mx-5"> <!-- where to search -->
+            <div class="col">عدد الأصناف</div>
+            <div class="col">
+                <input disabled type="number" [value]="invoice.invoiceDetails.length">
+            </div>
+            <div class="col">إجمالي الفاتورة</div>
+            <div class="col">
+                <input disabled type="number" [value]="totalBill">
+            </div>
+        </div>
+    </div> <!--Card-->
+</div>

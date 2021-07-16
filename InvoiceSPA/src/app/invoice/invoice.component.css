@@ -1,0 +1,39 @@
+.main{
+    border-radius: 30px;
+    border: none;
+    box-shadow: 12px 12px 18px 12px rgba(0, 0, 0, 0.3), 12px 6px 20px 12px rgba(0, 0, 0, 0.3);
+    height: 95vh;
+    background-color: #000000;
+    color: #e1ae00;
+    font-size: large;
+    font-weight: bold;
+    overflow-y: auto;
+}
+
+.btn{
+    background-color: white;
+}
+
+
+.btn:hover{
+    background-color: #e1ae00;
+}
+
+
+thead th{
+    color: white;
+}
+tbody td{
+    background-color: white;
+    width: 20%;
+}
+tbody td input{
+    width: 100%;
+    
+}
+
+.rapper{
+    /* display: ; */
+    overflow-y: auto;
+    height:220px;
+}
