@@ -16,7 +16,8 @@ import { InvoiceComponent } from './invoice/invoice.component';
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,11 +11,11 @@
             </div>
         </div>
         <hr style="color: white;">  
-
+        <form [formGroup]="invoiceForm">
         <div class="row mx-5 my-2"> 
             <div class="col-2">رقم الحركة</div>
             <div class="col">
-                <input type="number" [(ngModel)]="invoice.id">
+                <input type="number" [(ngModel)]="invoice.id" name="invoiceNum" formControlName="invoiceNum" required>
             </div>
             <div class="col text-start">
                 <button class="btn px-5 mx-2" (click)="updateInvoice()">Update</button>
@@ -26,7 +26,7 @@
         <div class="row mx-5 my-2"> 
             <div class="col-2">اسم العميل</div>
             <div class="col">
-                <input type="text" [(ngModel)]="invoice.clienName">
+                <input type="text" [(ngModel)]="invoice.clienName" name="clientName" formControlName="clientName" required>
             </div>
             <div class="col text-start">
                 <button class="btn px-5 mx-2" (click)="deleteInvoice()">Delete</button>
@@ -37,10 +37,13 @@
         <div class="row mx-5 my-2"> 
             <div class="col-2">التاريخ</div>
             <div class="col">
-                <input type="date" style="width: 205px;" [ngModel] ="invoice.date | date:'yyyy-MM-dd'" (ngModelChange)="invoice.date = $event">
+                <input type="date" name="date" formControlName="date" required style="width: 205px;" [ngModel] ="invoice.date | date:'yyyy-MM-dd'" (ngModelChange)="invoice.date = $event">
             </div>       
         </div>
+
+    </form>
         <!-- table -->
+        <form [formGroup]="editproductForm">
         <div class="rapper mt-4">
             <table class="table table-bordered">
                 <thead>
@@ -59,9 +62,9 @@
                         <td *ngIf="idToEdit != i.id">{{i.quantity}}</td>
                         <td *ngIf="idToEdit != i.id">{{i.price * i.quantity}}</td>
 
-                        <td *ngIf="idToEdit == i.id"><input type="text" [(ngModel)]="itemToEdit.itemName"></td>
-                        <td *ngIf="idToEdit == i.id"><input type="number" [(ngModel)]="itemToEdit.price"></td>
-                        <td *ngIf="idToEdit == i.id"><input type="number" [(ngModel)]="itemToEdit.quantity"></td>
+                        <td *ngIf="idToEdit == i.id"><input type="text" [(ngModel)]="itemToEdit.itemName" required formControlName="productName"></td>
+                        <td *ngIf="idToEdit == i.id"><input type="number" [(ngModel)]="itemToEdit.price" min="1" required formControlName="price"></td>
+                        <td *ngIf="idToEdit == i.id"><input type="number" [(ngModel)]="itemToEdit.quantity" min="1" required formControlName="quantity"></td>
                         <td *ngIf="idToEdit == i.id"><input disabled type="number" [(ngModel)]="itemToEdit.price*itemToEdit.quantity"></td>
                         <td>
                             <button (click)="editRow(i.id)" *ngIf="idToEdit != i.id" class="btn mx-2" style="background-color: #e1ae00;">تعديل</button>
@@ -75,16 +78,17 @@
                 </tbody>
             </table>
         </div>
-
+        </form>
+        <form [formGroup]="invoiceDetailsForm">
         <div class="row mx-5 my-4">
-            <div class="col"><input type="text" placeholder="اسم العنصر" [(ngModel)]="newItem.itemName"></div>
-            <div class="col"><input type="number" placeholder="السعر" [(ngModel)]="newItem.price"></div>
-            <div class="col"><input type="number" placeholder="الكمية" [(ngModel)]="newItem.quantity"></div>
+            <div class="col"><input type="text" placeholder="اسم العنصر" [(ngModel)]="newItem.itemName" required formControlName="productName"></div>
+            <div class="col"><input type="number" placeholder="السعر" [(ngModel)]="newItem.price" required min="1" formControlName="price"></div>
+            <div class="col"><input type="number" placeholder="الكمية" [(ngModel)]="newItem.quantity" required min="1" formControlName="quantity"></div>
             <div class="col">
                 <button (click)="addNewItem()" class="btn w-100 mx-auto" style="background-color: #e1ae00;">أضف</button>
             </div>
         </div>
-
+        </form>
         <hr style="color: white;" class="mt-1">
 
         <div class="row mx-5"> <!-- where to search -->
