@@ -1,5 +1,4 @@
-﻿using InvoiceAPI.Dtos;
-using InvoiceAPI.Models;
+﻿using InvoiceAPI.Models;
 using InvoiceAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

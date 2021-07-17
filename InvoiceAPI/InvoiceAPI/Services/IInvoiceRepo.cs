@@ -1,5 +1,4 @@
-﻿using InvoiceAPI.Dtos;
-using InvoiceAPI.Models;
+﻿using InvoiceAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

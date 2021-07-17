@@ -1,5 +1,4 @@
-﻿using InvoiceAPI.Dtos;
-using InvoiceAPI.Models;
+﻿using InvoiceAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
